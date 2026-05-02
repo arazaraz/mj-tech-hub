@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import {
   ArrowRight,
   BadgeCheck,
@@ -20,6 +21,12 @@ import {
   testimonials,
   vendorPills,
 } from "@/lib/site";
+import { recentProjects } from "@/lib/projects";
+
+export const metadata: Metadata = {
+  title: "IT, Network, Security & Help Desk Services",
+  description: "MJ Tech Hub provides professional IT support, network infrastructure, CCTV, access control, alarm systems, and office technology setup services across Toronto and the GTA.",
+};
 
 export default function HomePage() {
   return (
@@ -28,6 +35,7 @@ export default function HomePage() {
       <TrustBar />
       <ServiceCategories />
       <ServiceDetailGrid />
+      <RecentWork />
       <Reliability />
       <OfficeSetup />
       <Residential />
@@ -204,6 +212,39 @@ function ServiceDetailGrid() {
                 ))}
               </div>
             </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
+function RecentWork() {
+  return (
+    <section className="section bg-gradient-to-b from-slate-50 to-white">
+      <div className="container">
+        <div className="mb-12 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div className="max-w-3xl">
+            <p className="eyebrow">Recent Work</p>
+            <h2 className="h2 mt-3">Project delivery with clear outcomes.</h2>
+            <p className="lead mt-5">
+              Selected examples from our network, security and office deployment engagements across Toronto and the GTA.
+            </p>
+          </div>
+          <a href="/projects" className="btn-dark">View All Projects <ArrowRight size={18} /></a>
+        </div>
+
+        <div className="grid gap-5 lg:grid-cols-3">
+          {recentProjects.map((project) => (
+            <article key={project.slug} className="card-static border-slate-200">
+              <div className="mb-4 rounded-2xl bg-[linear-gradient(135deg,#0f172a,#1d4ed8_55%,#f97316)] p-5 text-white">
+                <p className="text-xs font-black uppercase tracking-[0.2em] text-orange-200">{project.category}</p>
+                <h3 className="mt-2 text-2xl font-black leading-tight">{project.title}</h3>
+                <p className="mt-2 text-sm text-blue-100">{project.location} • {project.propertyType}</p>
+              </div>
+              <p className="text-sm leading-7 text-slate-600">{project.result}</p>
+            </article>
           ))}
         </div>
       </div>

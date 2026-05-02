@@ -23,6 +23,7 @@ export const requestQuoteHref = "/contact#quote-form";
 export const nav = [
   { label: "Services", href: "/services" },
   { label: "Industries", href: "/#industries" },
+  { label: "Projects", href: "/projects" },
   { label: "Service Areas", href: "/#service-areas" },
   { label: "Resources", href: "/#faq" },
   { label: "About", href: "/#about" },
