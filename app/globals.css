@@ -4,7 +4,14 @@
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { margin: 0; color: #0f172a; background: #fff; }
+body {
+  margin: 0;
+  color: #0f172a;
+  background: #fff;
+  text-rendering: optimizeLegibility;
+}
+
+::selection { background: #22d3ee; color: #020617; }
 
 .container { @apply mx-auto max-w-7xl px-5 lg:px-8; }
 .section { @apply py-16 lg:py-24; }
@@ -22,3 +29,32 @@ body { margin: 0; color: #0f172a; background: #fff; }
 .input { @apply w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-brand focus:ring-4 focus:ring-orange-500/10; }
 .label { @apply mb-2 block text-sm font-black text-slate-800; }
 .help-text { @apply mt-1 text-xs font-medium text-slate-500; }
+
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(to bottom, black, transparent 92%);
+}
+
+.neo-eyebrow {
+  @apply text-xs font-black uppercase tracking-[0.24em] text-cyan-700;
+}
+
+.neo-btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded-full bg-cyan-400 px-6 py-3.5 text-sm font-black text-slate-950 shadow-xl shadow-cyan-500/15 transition duration-300 hover:-translate-y-0.5 hover:bg-cyan-300;
+}
+
+.neo-btn-secondary {
+  @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/[0.035] px-6 py-3.5 text-sm font-black text-white backdrop-blur transition duration-300 hover:-translate-y-0.5 hover:border-white/40 hover:bg-white/10;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
