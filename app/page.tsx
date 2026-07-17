@@ -1,48 +1,88 @@
 import type { Metadata } from "next";
 import {
   ArrowRight,
-  BadgeCheck,
+  Bot,
+  BrainCircuit,
   CheckCircle2,
-  Clock,
-  MapPin,
-  Star,
+  CloudCog,
+  Headphones,
+  Network,
+  PhoneCall,
+  RadioTower,
+  ServerCog,
+  ShieldCheck,
+  Sparkles,
+  Workflow,
+  Zap,
 } from "lucide-react";
 import { PageShell } from "@/components/PageShell";
 import { QuoteForm } from "@/components/QuoteForm";
-import {
-  areas,
-  faq,
-  industries,
-  officeScope,
-  processSteps,
-  residentialScope,
-  serviceCategories,
-  serviceGroups,
-  testimonials,
-  vendorPills,
-} from "@/lib/site";
-import { recentProjects } from "@/lib/projects";
 
 export const metadata: Metadata = {
-  title: "IT, Network, Security & Help Desk Services",
-  description: "MJ Tech Hub provides professional IT support, network infrastructure, CCTV, access control, alarm systems, and office technology setup services across Toronto and the GTA.",
+  title: "AI, VoIP, Network & Automation Solutions | MJ Tech Hub",
+  description:
+    "MJ Tech Hub builds AI receptionists, business phone systems, network infrastructure and intelligent automation for clinics, offices and growing businesses across Toronto and the GTA.",
 };
+
+const services = [
+  {
+    icon: Bot,
+    number: "01",
+    title: "AI Receptionist & Voice Agents",
+    text: "AI-powered phone agents that answer calls, qualify leads, handle FAQs, route callers and support appointment workflows around the clock.",
+    href: "/contact",
+  },
+  {
+    icon: PhoneCall,
+    number: "02",
+    title: "VoIP & Business Communications",
+    text: "Cloud and on-premise VoIP systems, SIP trunks, extensions, call routing, auto attendants, recordings and mobile softphones.",
+    href: "/services",
+  },
+  {
+    icon: Network,
+    number: "03",
+    title: "Network & IT Infrastructure",
+    text: "Reliable Wi-Fi, switching, firewalls, structured cabling, racks, servers, workstations and complete office technology deployment.",
+    href: "/services",
+  },
+  {
+    icon: Workflow,
+    number: "04",
+    title: "Business Automation",
+    text: "n8n workflows that connect calls, forms, email, calendars, CRMs and internal tools to reduce repetitive work and missed opportunities.",
+    href: "/contact",
+  },
+];
+
+const useCases = [
+  "Answer every incoming call",
+  "Book and confirm appointments",
+  "Route urgent calls correctly",
+  "Send SMS and email follow-ups",
+  "Create CRM records automatically",
+  "Reduce front-desk workload",
+];
+
+const capabilities = [
+  { icon: BrainCircuit, label: "Conversational AI" },
+  { icon: RadioTower, label: "SIP & VoIP" },
+  { icon: ServerCog, label: "Systems Integration" },
+  { icon: CloudCog, label: "Cloud Automation" },
+  { icon: ShieldCheck, label: "Secure Infrastructure" },
+  { icon: Headphones, label: "Ongoing Support" },
+];
 
 export default function HomePage() {
   return (
     <PageShell>
       <Hero />
-      <TrustBar />
-      <ServiceCategories />
-      <ServiceDetailGrid />
-      <RecentWork />
-      <Reliability />
-      <OfficeSetup />
-      <Residential />
-      <Industries />
+      <SignalBar />
+      <Services />
+      <AIExperience />
+      <Infrastructure />
       <Process />
-      <ServiceAreas />
-      <FAQ />
+      <FinalCTA />
       <QuoteForm />
     </PageShell>
   );
@@ -50,68 +90,81 @@ export default function HomePage() {
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden bg-slate-950 px-5 py-20 text-white lg:px-8 lg:py-28">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#1d4ed866,transparent_36%),radial-gradient(circle_at_bottom_left,#f9731638,transparent_30%)]" />
-      <div className="relative mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+    <section className="relative isolate overflow-hidden bg-[#05070b] px-5 pb-20 pt-24 text-white lg:px-8 lg:pb-28 lg:pt-32">
+      <div className="hero-grid absolute inset-0 opacity-40" />
+      <div className="absolute -left-32 top-24 h-80 w-80 rounded-full bg-cyan-500/20 blur-[120px]" />
+      <div className="absolute -right-32 top-10 h-[34rem] w-[34rem] rounded-full bg-blue-700/20 blur-[150px]" />
+      <div className="absolute bottom-0 left-1/2 h-56 w-[38rem] -translate-x-1/2 rounded-full bg-orange-500/10 blur-[120px]" />
+
+      <div className="relative mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-[1.08fr_0.92fr]">
         <div>
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-black text-blue-100 backdrop-blur">
-            <Clock size={16} className="text-orange-300" />
-            Toronto & GTA • Remote Help Desk • On-Site Service
+          <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-300/5 px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-cyan-200 backdrop-blur">
+            <Sparkles size={15} /> Intelligent Business Technology
           </div>
 
-          <h1 className="h1">Enhance Your IT, Network & Security Infrastructure</h1>
+          <h1 className="max-w-5xl text-5xl font-black leading-[0.95] tracking-[-0.055em] text-white md:text-7xl lg:text-[5.8rem]">
+            AI that answers.
+            <span className="block bg-gradient-to-r from-cyan-300 via-blue-400 to-violet-400 bg-clip-text text-transparent">
+              Systems that perform.
+            </span>
+          </h1>
 
-          <p className="mt-7 max-w-3xl text-lg leading-8 text-slate-300 md:text-xl">
-            Professional help desk, network cabling, office setup, CCTV, intrusion alarm,
-            access control, VoIP and smart technology services for homes and businesses
-            across Toronto and the GTA.
+          <p className="mt-8 max-w-2xl text-lg leading-8 text-slate-300 md:text-xl">
+            MJ Tech Hub designs and deploys AI receptionists, VoIP systems, network infrastructure and business automation for modern organizations.
           </p>
 
-          <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
-            <a href="/contact#quote-form" className="btn-primary">
-              Request Quote <ArrowRight size={18} />
+          <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+            <a href="/book-meeting" className="neo-btn-primary">
+              Book a Strategy Call <ArrowRight size={18} />
             </a>
-            <a href="/book-meeting" className="btn-light">
-              Book a Site Visit
-            </a>
-            <a href="/remote-support" className="btn-light">
-              Get Remote Support
+            <a href="/contact" className="neo-btn-secondary">
+              Build Your Solution
             </a>
           </div>
 
-          <div className="mt-10 grid gap-3 sm:grid-cols-3">
-            {["Fast response", "Clean installation", "Final testing"].map((item) => (
-              <div key={item} className="flex items-center gap-2 text-sm font-black text-slate-300">
-                <CheckCircle2 size={18} className="text-orange-300" />
-                {item}
+          <div className="mt-12 grid max-w-2xl gap-4 border-t border-white/10 pt-7 sm:grid-cols-3">
+            {[
+              ["24/7", "AI call coverage"],
+              ["One", "connected ecosystem"],
+              ["GTA", "on-site deployment"],
+            ].map(([value, label]) => (
+              <div key={label}>
+                <p className="text-2xl font-black text-white">{value}</p>
+                <p className="mt-1 text-sm font-medium text-slate-400">{label}</p>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="rounded-[2rem] border border-white/10 bg-white/10 p-4 shadow-2xl backdrop-blur-xl">
-          <div className="rounded-[1.5rem] bg-white p-7 text-slate-950">
-            <p className="eyebrow">Complete Coverage</p>
-            <h2 className="mt-3 text-3xl font-black leading-tight">
-              One organized service partner for IT, network and security.
-            </h2>
-            <div className="mt-7 grid gap-4">
-              {[
-                ["Help Desk", "Remote and on-site support for everyday IT issues."],
-                ["Office Setup", "Wiring, rack, Wi-Fi, devices and final handover."],
-                ["Security", "CCTV, intrusion alarm and access control systems."],
-                ["Residential", "Home Wi-Fi, smart devices, cameras and home office setup."],
-              ].map(([title, text]) => (
-                <div key={title} className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-                  <div className="flex items-start gap-3">
-                    <BadgeCheck className="mt-0.5 text-brand" size={21} />
-                    <div>
-                      <p className="font-black text-slate-950">{title}</p>
-                      <p className="mt-1 text-sm leading-6 text-slate-600">{text}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
+        <div className="relative mx-auto w-full max-w-xl">
+          <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-br from-cyan-400/20 via-blue-500/5 to-orange-400/10 blur-2xl" />
+          <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.055] p-5 shadow-2xl backdrop-blur-2xl">
+            <div className="mb-5 flex items-center justify-between border-b border-white/10 pb-4">
+              <div>
+                <p className="text-xs font-black uppercase tracking-[0.22em] text-cyan-300">Live System</p>
+                <p className="mt-1 text-sm font-bold text-slate-300">MJ Intelligent Operations</p>
+              </div>
+              <span className="flex items-center gap-2 text-xs font-bold text-emerald-300">
+                <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" /> Online
+              </span>
+            </div>
+
+            <div className="space-y-4">
+              <DashboardRow icon={PhoneCall} title="Incoming call" text="New patient inquiry" status="Answered" />
+              <DashboardRow icon={Bot} title="AI receptionist" text="Intent detected: appointment" status="Active" />
+              <DashboardRow icon={Workflow} title="Automation" text="Calendar + CRM workflow" status="Running" />
+              <DashboardRow icon={Network} title="Infrastructure" text="Voice and data network" status="Healthy" />
+            </div>
+
+            <div className="mt-5 rounded-2xl border border-cyan-300/10 bg-cyan-300/[0.045] p-5">
+              <div className="flex items-center justify-between">
+                <p className="text-sm font-black text-white">Workflow completed</p>
+                <Zap size={18} className="text-cyan-300" />
+              </div>
+              <div className="mt-4 h-2 overflow-hidden rounded-full bg-white/10">
+                <div className="h-full w-[92%] rounded-full bg-gradient-to-r from-cyan-400 to-blue-500" />
+              </div>
+              <p className="mt-3 text-xs leading-5 text-slate-400">Call answered, appointment request captured and follow-up sent automatically.</p>
             </div>
           </div>
         </div>
@@ -120,28 +173,110 @@ function Hero() {
   );
 }
 
-function TrustBar() {
+function DashboardRow({ icon: Icon, title, text, status }: { icon: typeof Bot; title: string; text: string; status: string }) {
   return (
-    <section className="bg-white px-5 py-12 lg:px-8">
+    <div className="flex items-center gap-4 rounded-2xl border border-white/10 bg-black/20 p-4">
+      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/10 text-cyan-300">
+        <Icon size={21} />
+      </div>
+      <div className="min-w-0 flex-1">
+        <p className="font-black text-white">{title}</p>
+        <p className="truncate text-sm text-slate-400">{text}</p>
+      </div>
+      <span className="rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1 text-[11px] font-black text-emerald-300">{status}</span>
+    </div>
+  );
+}
+
+function SignalBar() {
+  return (
+    <section className="border-y border-slate-800 bg-[#090c12] px-5 py-5 text-white lg:px-8">
+      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-10 gap-y-4 md:justify-between">
+        {capabilities.map(({ icon: Icon, label }) => (
+          <div key={label} className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.16em] text-slate-400">
+            <Icon size={17} className="text-cyan-300" /> {label}
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function Services() {
+  return (
+    <section id="services" className="bg-[#f4f7fb] px-5 py-20 lg:px-8 lg:py-28">
       <div className="mx-auto max-w-7xl">
-        <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+        <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
           <div>
-            <p className="eyebrow">Professional Service Approach</p>
-            <h2 className="mt-3 text-3xl font-black text-slate-950 md:text-4xl">
-              Clear communication, organized work and reliable support.
-            </h2>
+            <p className="neo-eyebrow">Core Capabilities</p>
+            <h2 className="mt-4 text-4xl font-black tracking-[-0.04em] text-slate-950 md:text-6xl">One partner. Four connected systems.</h2>
           </div>
-          <div className="grid gap-4 sm:grid-cols-3">
-            {testimonials.map((t) => (
-              <div key={t.name} className="card-static">
-                <div className="mb-4 flex gap-1 text-brand">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} fill="currentColor" size={15} />
-                  ))}
+          <p className="max-w-2xl text-lg leading-8 text-slate-600 lg:justify-self-end">
+            We connect communications, infrastructure and automation into one practical technology stack designed around how your business actually works.
+          </p>
+        </div>
+
+        <div className="mt-14 grid gap-5 lg:grid-cols-2">
+          {services.map(({ icon: Icon, number, title, text, href }) => (
+            <a key={title} href={href} className="group relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-cyan-300 hover:shadow-2xl hover:shadow-slate-900/10 md:p-9">
+              <div className="absolute right-6 top-5 text-6xl font-black tracking-[-0.08em] text-slate-100 transition group-hover:text-cyan-50">{number}</div>
+              <div className="relative">
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-950 text-cyan-300 transition group-hover:bg-cyan-400 group-hover:text-slate-950">
+                  <Icon size={27} />
                 </div>
-                <p className="text-sm leading-6 text-slate-700">“{t.quote}”</p>
-                <p className="mt-4 text-sm font-black text-slate-950">{t.name}</p>
-                <p className="text-xs font-bold text-slate-500">{t.type}</p>
+                <h3 className="mt-7 max-w-md text-2xl font-black tracking-[-0.025em] text-slate-950 md:text-3xl">{title}</h3>
+                <p className="mt-4 max-w-xl leading-7 text-slate-600">{text}</p>
+                <span className="mt-7 inline-flex items-center gap-2 text-sm font-black text-slate-950">
+                  Explore solution <ArrowRight size={17} className="transition group-hover:translate-x-1" />
+                </span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function AIExperience() {
+  return (
+    <section className="relative overflow-hidden bg-[#070a10] px-5 py-20 text-white lg:px-8 lg:py-28">
+      <div className="absolute right-0 top-0 h-96 w-96 rounded-full bg-blue-600/15 blur-[140px]" />
+      <div className="relative mx-auto grid max-w-7xl gap-14 lg:grid-cols-2 lg:items-center">
+        <div>
+          <p className="neo-eyebrow text-cyan-300">AI Receptionist</p>
+          <h2 className="mt-4 text-4xl font-black tracking-[-0.045em] md:text-6xl">Your front desk, upgraded.</h2>
+          <p className="mt-6 max-w-xl text-lg leading-8 text-slate-300">
+            Give every caller a fast, professional response. The AI agent follows your business rules, captures the right information and connects with the tools your team already uses.
+          </p>
+          <div className="mt-8 grid gap-3 sm:grid-cols-2">
+            {useCases.map((item) => (
+              <div key={item} className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.045] p-4 text-sm font-bold text-slate-200">
+                <CheckCircle2 size={18} className="shrink-0 text-cyan-300" /> {item}
+              </div>
+            ))}
+          </div>
+          <a href="/book-meeting" className="neo-btn-primary mt-9">See What AI Can Handle <ArrowRight size={18} /></a>
+        </div>
+
+        <div className="rounded-[2rem] border border-white/10 bg-white/[0.055] p-6 shadow-2xl backdrop-blur-xl md:p-8">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-cyan-300">Call Simulation</p>
+              <p className="mt-2 text-xl font-black">Dental Office AI Agent</p>
+            </div>
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-cyan-400 text-slate-950"><PhoneCall size={22} /></div>
+          </div>
+          <div className="mt-7 space-y-4">
+            <div className="mr-10 rounded-2xl rounded-tl-sm bg-white/10 p-4 text-sm leading-6 text-slate-300">Thank you for calling. How may I help you today?</div>
+            <div className="ml-10 rounded-2xl rounded-tr-sm bg-cyan-400 p-4 text-sm font-bold leading-6 text-slate-950">I need to book a cleaning appointment next week.</div>
+            <div className="mr-10 rounded-2xl rounded-tl-sm bg-white/10 p-4 text-sm leading-6 text-slate-300">Certainly. I can check availability and collect the details needed for your appointment.</div>
+          </div>
+          <div className="mt-7 grid grid-cols-3 gap-3">
+            {["Intent", "Calendar", "Follow-up"].map((label, index) => (
+              <div key={label} className="rounded-xl border border-white/10 bg-black/20 p-3 text-center">
+                <p className="text-xs font-black text-white">{label}</p>
+                <p className="mt-1 text-[10px] font-bold text-emerald-300">{index === 0 ? "Detected" : index === 1 ? "Connected" : "Ready"}</p>
               </div>
             ))}
           </div>
@@ -151,222 +286,42 @@ function TrustBar() {
   );
 }
 
-function ServiceCategories() {
+function Infrastructure() {
   return (
-    <section id="services" className="section bg-slate-50">
-      <div className="container">
-        <div className="mb-12 max-w-3xl">
-          <p className="eyebrow">Core Services</p>
-          <h2 className="h2 mt-3">Everything your property needs to stay connected and secure.</h2>
-          <p className="lead mt-5">
-            A clear service structure for fast support, clean infrastructure, security systems,
-            communications and full office or residential setup.
-          </p>
-        </div>
-
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {serviceCategories.map((s) => {
-            const Icon = s.icon;
-            return (
-              <a key={s.title} href={s.href} className="card group">
-                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-950 text-brand transition group-hover:bg-brand group-hover:text-white">
-                  <Icon size={28} />
+    <section className="bg-white px-5 py-20 lg:px-8 lg:py-28">
+      <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+        <div className="relative rounded-[2rem] bg-slate-950 p-8 text-white shadow-2xl md:p-10">
+          <div className="hero-grid absolute inset-0 rounded-[2rem] opacity-20" />
+          <div className="relative grid gap-4 sm:grid-cols-2">
+            {[
+              [Network, "Network Core", "Switching, Wi-Fi and firewalls"],
+              [PhoneCall, "Voice", "VoIP, SIP and call routing"],
+              [ServerCog, "Systems", "Servers, devices and cloud tools"],
+              [ShieldCheck, "Security", "Reliable and protected deployment"],
+            ].map(([Icon, title, text]) => {
+              const CardIcon = Icon as typeof Network;
+              return (
+                <div key={String(title)} className="rounded-2xl border border-white/10 bg-white/[0.06] p-5 backdrop-blur">
+                  <CardIcon className="text-cyan-300" size={25} />
+                  <p className="mt-5 font-black">{String(title)}</p>
+                  <p className="mt-2 text-sm leading-6 text-slate-400">{String(text)}</p>
                 </div>
-                <h3 className="h3">{s.title}</h3>
-                <p className="mt-4 body-copy">{s.desc}</p>
-                <span className="mt-6 inline-flex items-center gap-2 text-sm font-black text-brand">
-                  Learn more <ArrowRight size={17} />
-                </span>
-              </a>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ServiceDetailGrid() {
-  return (
-    <section className="section bg-white">
-      <div className="container">
-        <div className="mb-12 max-w-3xl">
-          <p className="eyebrow">Detailed Scope</p>
-          <h2 className="h2 mt-3">Services are organized so nothing gets missed.</h2>
-          <p className="lead mt-5">
-            Each category is written clearly for customers and useful for quoting, site visits and project planning.
-          </p>
-        </div>
-
-        <div className="grid gap-6 lg:grid-cols-2">
-          {serviceGroups.map((group) => (
-            <div key={group.title} className="card-static">
-              <h3 className="h3">{group.title}</h3>
-              <p className="mt-3 body-copy">{group.summary}</p>
-              <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                {group.items.map((item) => (
-                  <div key={item} className="flex items-start gap-2 text-sm font-bold text-slate-700">
-                    <CheckCircle2 className="mt-0.5 shrink-0 text-brand" size={17} />
-                    <span>{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-
-function RecentWork() {
-  return (
-    <section className="section bg-gradient-to-b from-slate-50 to-white">
-      <div className="container">
-        <div className="mb-12 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <div className="max-w-3xl">
-            <p className="eyebrow">Recent Work</p>
-            <h2 className="h2 mt-3">Project delivery with clear outcomes.</h2>
-            <p className="lead mt-5">
-              Selected examples from our network, security and office deployment engagements across Toronto and the GTA.
-            </p>
+              );
+            })}
           </div>
-          <a href="/projects" className="btn-dark">View All Projects <ArrowRight size={18} /></a>
         </div>
 
-        <div className="grid gap-5 lg:grid-cols-3">
-          {recentProjects.map((project) => (
-            <article key={project.slug} className="card-static border-slate-200">
-              <div className="mb-4 rounded-2xl bg-[linear-gradient(135deg,#0f172a,#1d4ed8_55%,#f97316)] p-5 text-white">
-                <p className="text-xs font-black uppercase tracking-[0.2em] text-orange-200">{project.category}</p>
-                <h3 className="mt-2 text-2xl font-black leading-tight">{project.title}</h3>
-                <p className="mt-2 text-sm text-blue-100">{project.location} • {project.propertyType}</p>
-              </div>
-              <p className="text-sm leading-7 text-slate-600">{project.result}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Reliability() {
-  const items = [
-    "Remote + on-site support",
-    "Clean installation",
-    "End-to-end delivery",
-    "Final testing before handover",
-    "Homes and businesses",
-    "Toronto & GTA coverage",
-  ];
-
-  return (
-    <section id="about" className="section bg-slate-950 text-white">
-      <div className="container grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
         <div>
-          <p className="mb-3 text-xs font-black uppercase tracking-[0.24em] text-orange-300">
-            Why MJ Tech Hub
+          <p className="neo-eyebrow">Built on Real Infrastructure</p>
+          <h2 className="mt-4 text-4xl font-black tracking-[-0.045em] text-slate-950 md:text-6xl">AI works better when the foundation is solid.</h2>
+          <p className="mt-6 text-lg leading-8 text-slate-600">
+            MJ Tech Hub brings hands-on IT and network experience into every AI and automation project. That means your solution is not only impressive in a demo—it is stable, supportable and ready for daily operations.
           </p>
-          <h2 className="text-3xl font-black tracking-tight md:text-5xl">
-            Reliable. Organized. Fully Tested.
-          </h2>
-          <p className="mt-6 text-lg leading-8 text-slate-300">
-            Technology services you can count on — from urgent help desk support to
-            full project delivery from wiring to final handover.
-          </p>
-        </div>
-
-        <div className="grid gap-4 sm:grid-cols-2">
-          {items.map((item) => (
-            <div key={item} className="rounded-2xl bg-white/10 p-5 font-black">
-              <BadgeCheck className="mb-3 text-orange-300" />
-              {item}
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function OfficeSetup() {
-  return (
-    <section className="section bg-white">
-      <div className="container grid gap-12 lg:grid-cols-2 lg:items-start">
-        <div>
-          <p className="eyebrow">Complete Office Setup</p>
-          <h2 className="h2 mt-3">From empty space to fully operational office.</h2>
-          <p className="lead mt-6">
-            Complete technology deployment for offices, clinics, dental offices and small businesses —
-            planned, installed, configured, tested and handed over cleanly.
-          </p>
-          <a href="/office-setup" className="btn-dark mt-8">
-            Explore Office Setup <ArrowRight size={18} />
-          </a>
-        </div>
-
-        <div className="grid gap-3 sm:grid-cols-2">
-          {officeScope.map((item) => (
-            <div key={item} className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm font-bold text-slate-800">
-              <span className="mr-2 text-brand">●</span>
-              {item}
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Residential() {
-  return (
-    <section className="section bg-slate-50">
-      <div className="container">
-        <div className="mb-12 max-w-3xl">
-          <p className="eyebrow">Residential Technology</p>
-          <h2 className="h2 mt-3">Smart, secure and reliable technology for homes.</h2>
-          <p className="lead mt-5">
-            Home Wi-Fi, smart devices, cameras, alarms, home office setup and practical support
-            for houses, condos and residential properties.
-          </p>
-        </div>
-
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {residentialScope.map((item) => (
-            <div key={item} className="rounded-2xl border border-slate-200 bg-white p-5 text-center text-sm font-black text-slate-800 shadow-sm">
-              {item}
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Industries() {
-  return (
-    <section id="industries" className="section bg-white">
-      <div className="container">
-        <div className="mb-12 max-w-3xl">
-          <p className="eyebrow">Industries We Serve</p>
-          <h2 className="h2 mt-3">Built for homes and business environments.</h2>
-          <p className="lead mt-5">
-            Service coverage for residential properties, professional offices and small business spaces.
-          </p>
-        </div>
-
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {industries.map((industry) => {
-            const Icon = industry.icon;
-            return (
-              <div key={industry.title} className="rounded-[1.5rem] bg-slate-950 p-6 text-white shadow-sm">
-                <Icon className="mb-5 text-orange-300" size={28} />
-                <p className="text-lg font-black">{industry.title}</p>
-              </div>
-            );
-          })}
+          <div className="mt-8 space-y-4">
+            {["Professional design and deployment", "Clean installation and documentation", "End-to-end testing before handover", "Remote and on-site support across Toronto and the GTA"].map((item) => (
+              <div key={item} className="flex items-center gap-3 font-bold text-slate-800"><CheckCircle2 size={19} className="text-cyan-600" /> {item}</div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -374,22 +329,23 @@ function Industries() {
 }
 
 function Process() {
+  const steps = [
+    ["01", "Discover", "We map your calls, workflows, tools and infrastructure."],
+    ["02", "Design", "We create the right AI, VoIP, network and automation architecture."],
+    ["03", "Deploy", "We configure, integrate, install and test the complete solution."],
+    ["04", "Improve", "We support the system and refine it using real operational feedback."],
+  ];
   return (
-    <section className="section bg-slate-50">
-      <div className="container">
-        <div className="mb-12 max-w-3xl">
-          <p className="eyebrow">Our Process</p>
-          <h2 className="h2 mt-3">A clear workflow from request to handover.</h2>
-        </div>
-
-        <div className="grid gap-5 md:grid-cols-5">
-          {processSteps.map((step, index) => (
-            <div key={step.title} className="card-static">
-              <div className="mb-4 text-sm font-black text-brand">
-                {String(index + 1).padStart(2, "0")}
-              </div>
-              <h3 className="text-xl font-black text-slate-950">{step.title}</h3>
-              <p className="mt-3 text-sm leading-6 text-slate-600">{step.text}</p>
+    <section className="bg-[#eef3f8] px-5 py-20 lg:px-8 lg:py-28">
+      <div className="mx-auto max-w-7xl">
+        <p className="neo-eyebrow">How We Work</p>
+        <h2 className="mt-4 max-w-3xl text-4xl font-black tracking-[-0.045em] text-slate-950 md:text-6xl">From idea to working system.</h2>
+        <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          {steps.map(([number, title, text]) => (
+            <div key={number} className="rounded-[1.7rem] border border-slate-200 bg-white p-6">
+              <p className="text-sm font-black tracking-[0.18em] text-cyan-600">{number}</p>
+              <h3 className="mt-8 text-2xl font-black text-slate-950">{title}</h3>
+              <p className="mt-4 text-sm leading-7 text-slate-600">{text}</p>
             </div>
           ))}
         </div>
@@ -398,49 +354,18 @@ function Process() {
   );
 }
 
-function ServiceAreas() {
+function FinalCTA() {
   return (
-    <section id="service-areas" className="bg-white px-5 py-16 lg:px-8">
-      <div className="mx-auto max-w-7xl rounded-[2rem] bg-slate-950 p-8 text-white lg:p-12">
-        <div className="grid gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:items-center">
+    <section className="bg-white px-5 py-20 lg:px-8 lg:py-28">
+      <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] bg-slate-950 px-7 py-14 text-white shadow-2xl md:px-14 md:py-20">
+        <div className="hero-grid absolute inset-0 opacity-20" />
+        <div className="absolute right-0 top-0 h-72 w-72 rounded-full bg-cyan-500/20 blur-[110px]" />
+        <div className="relative flex flex-col gap-9 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand">
-              <MapPin size={28} />
-            </div>
-            <h2 className="text-3xl font-black md:text-4xl">Toronto & GTA service coverage.</h2>
-            <p className="mt-4 leading-8 text-slate-300">
-              Remote support and on-site service for residential and business clients.
-            </p>
+            <p className="neo-eyebrow text-cyan-300">MJ Tech Hub</p>
+            <h2 className="mt-4 max-w-4xl text-4xl font-black tracking-[-0.05em] md:text-6xl">Build a smarter way for your business to communicate and operate.</h2>
           </div>
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-            {areas.map((area) => (
-              <div key={area} className="rounded-2xl bg-white/10 p-4 text-center text-sm font-black">
-                {area}
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function FAQ() {
-  return (
-    <section id="faq" className="section bg-slate-50">
-      <div className="container">
-        <div className="mb-12 max-w-3xl">
-          <p className="eyebrow">FAQ</p>
-          <h2 className="h2 mt-3">Common questions.</h2>
-        </div>
-
-        <div className="grid gap-5 lg:grid-cols-2">
-          {faq.map((item) => (
-            <div key={item.q} className="card-static">
-              <h3 className="text-lg font-black text-slate-950">{item.q}</h3>
-              <p className="mt-4 body-copy">{item.a}</p>
-            </div>
-          ))}
+          <a href="/book-meeting" className="neo-btn-primary shrink-0">Start the Conversation <ArrowRight size={18} /></a>
         </div>
       </div>
     </section>
