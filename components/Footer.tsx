@@ -1,53 +1,53 @@
-import { addressLine1, addressLine2, areas, email, megaMenu, phone, requestQuoteHref } from "@/lib/site";
+import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
+import { areas, email, footerLinks, phone, requestQuoteHref } from "@/lib/site";
 import { Logo } from "./Logo";
 
 export function Footer() {
   const cleanPhone = phone.replace(/[^+\d]/g, "");
 
   return (
-    <footer className="bg-slate-950 text-white">
-      <div className="container py-16">
-        <div className="grid gap-10 lg:grid-cols-[1.05fr_1.95fr]">
+    <footer className="relative overflow-hidden bg-[#050c16] text-white">
+      <div className="pointer-events-none absolute inset-0 dot-field opacity-25" />
+      <div className="container relative py-16 lg:py-20">
+        <div className="mb-14 flex flex-col justify-between gap-7 border-b border-white/10 pb-12 lg:flex-row lg:items-end">
+          <div className="max-w-2xl">
+            <p className="eyebrow !text-electric">Let&apos;s build it right</p>
+            <h2 className="mt-3 text-3xl font-extrabold leading-tight tracking-[-0.035em] sm:text-5xl">Ready for technology that simply works?</h2>
+          </div>
+          <a href={requestQuoteHref} className="btn-primary shrink-0">Start a conversation <ArrowUpRight size={18} /></a>
+        </div>
+
+        <div className="grid gap-12 lg:grid-cols-[1.1fr_1.9fr]">
           <div>
-            <div className="inline-block rounded-2xl bg-white p-3"><Logo /></div>
-            <p className="mt-5 max-w-md leading-7 text-slate-300">
-              Complete IT, Network, Security & Help Desk solutions for homes, offices, clinics,
-              dental offices and small businesses across Toronto and the GTA.
+            <Logo tone="light" />
+            <p className="mt-5 max-w-sm text-sm leading-7 text-slate-400">
+              Integrated IT, network, security, VoIP and AI solutions for homes, clinics, offices and growing businesses across Toronto and the GTA.
             </p>
-
-            <div className="mt-6 grid gap-3 text-sm text-slate-300">
-              <a href={`tel:${cleanPhone}`} className="font-black text-white hover:text-orange-300">{phone}</a>
-              <a href={`mailto:${email}`} className="hover:text-orange-300">{email}</a>
-              <div>
-                <p className="font-black text-white">{addressLine1}</p>
-                <p>{addressLine2}</p>
-              </div>
-            </div>
-
-            <div className="mt-6 flex flex-wrap gap-3">
-              <a href={`tel:${cleanPhone}`} className="rounded-full bg-brand px-6 py-3 font-black text-white">Call Now</a>
-              <a href={requestQuoteHref} className="rounded-full border border-white/20 px-6 py-3 font-black text-white hover:bg-white hover:text-slate-950">
-                Request Quote
-              </a>
+            <div className="mt-7 grid gap-3 text-sm">
+              <a href={`tel:${cleanPhone}`} className="inline-flex items-center gap-3 text-slate-300 hover:text-white"><Phone size={16} className="text-electric" /> {phone}</a>
+              <a href={`mailto:${email}`} className="inline-flex items-center gap-3 text-slate-300 hover:text-white"><Mail size={16} className="text-electric" /> {email}</a>
+              <span className="inline-flex items-center gap-3 text-slate-300"><MapPin size={16} className="text-electric" /> Toronto & GTA</span>
             </div>
           </div>
 
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {megaMenu.map((group) => (
+          <div className="grid gap-9 sm:grid-cols-3">
+            {footerLinks.map((group) => (
               <div key={group.title}>
-                <h3 className="font-black text-white">{group.title}</h3>
-                <div className="mt-4 grid gap-2 text-sm text-slate-400">
-                  {group.links.slice(0, 6).map((link) => (
-                    <a href="/services" key={link} className="hover:text-white">{link}</a>
-                  ))}
+                <h3 className="text-sm font-extrabold text-white">{group.title}</h3>
+                <div className="mt-4 grid gap-3 text-sm text-slate-400">
+                  {group.links.map((link) => <a href={link.href} key={link.label} className="transition hover:text-white">{link.label}</a>)}
                 </div>
               </div>
             ))}
           </div>
         </div>
-        <div className="mt-12 border-t border-white/10 pt-8">
-          <p className="text-sm font-bold text-slate-400">Service areas: {areas.join(" • ")}</p>
-          <p className="mt-4 text-sm text-slate-500">© {new Date().getFullYear()} MJ Tech Hub. All rights reserved.</p>
+
+        <div className="mt-14 border-t border-white/10 pt-7 text-xs leading-6 text-slate-500">
+          <p>Serving {areas.join(" • ")}</p>
+          <div className="mt-3 flex flex-col justify-between gap-2 sm:flex-row">
+            <p>© {new Date().getFullYear()} MJ Tech Hub. All rights reserved.</p>
+            <p>Connected. Secure. Ready.</p>
+          </div>
         </div>
       </div>
     </footer>

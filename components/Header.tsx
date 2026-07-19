@@ -1,8 +1,8 @@
 "use client";
 
-import { ChevronDown, MapPin, Menu, Phone, X } from "lucide-react";
+import { ArrowUpRight, ChevronDown, MapPin, Menu, Phone, X } from "lucide-react";
 import { useState } from "react";
-import { addressLine1, megaMenu, nav, phone, requestQuoteHref } from "@/lib/site";
+import { megaMenu, nav, phone, requestQuoteHref } from "@/lib/site";
 import { Logo } from "./Logo";
 
 export function Header() {
@@ -11,55 +11,48 @@ export function Header() {
   const cleanPhone = phone.replace(/[^+\d]/g, "");
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-xl">
-      <div className="hidden border-b border-slate-200 bg-slate-950 text-sm font-bold text-white lg:block">
-        <div className="container flex h-11 items-center justify-between gap-4">
-          <div className="flex items-center gap-6 text-slate-300">
-            <a href="/contact" className="hover:text-white">Client Support</a>
-            <a href="/remote-support" className="hover:text-white">Remote Support</a>
-            <a href={`tel:${cleanPhone}`} className="inline-flex items-center gap-2 hover:text-white"><Phone size={14} /> {phone}</a>
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-navy/95 text-white shadow-[0_1px_0_rgba(255,255,255,.04)] backdrop-blur-xl">
+      <div className="border-b border-white/[.07] bg-white/[.025]">
+        <div className="container flex min-h-9 items-center justify-between gap-4 py-2 text-[11px] font-bold tracking-wide text-slate-400">
+          <div className="inline-flex items-center gap-2">
+            <span className="status-pulse h-1.5 w-1.5 rounded-full bg-emerald-400" />
+            Remote & on-site service available
           </div>
-          <div className="flex items-center gap-6">
-            <span className="inline-flex items-center gap-2 text-slate-400"><MapPin size={14} /> {addressLine1}</span>
-            <a href="/service-pricing" className="text-slate-300 hover:text-white">Service Pricing</a>
-            <a href="/book-meeting" className="rounded-full bg-brand px-4 py-1.5 text-white hover:bg-orange-600">Book a Site Visit</a>
+          <div className="hidden items-center gap-5 sm:flex">
+            <span className="inline-flex items-center gap-1.5"><MapPin size={12} /> Toronto & GTA</span>
+            <a href={`tel:${cleanPhone}`} className="inline-flex items-center gap-1.5 text-white hover:text-electric">
+              <Phone size={12} /> {phone}
+            </a>
           </div>
         </div>
       </div>
 
-      <div className="container flex h-20 items-center justify-between gap-6">
-        <Logo />
+      <div className="container flex h-[74px] items-center justify-between gap-6">
+        <Logo tone="light" />
 
-        <nav className="hidden items-center gap-7 text-sm font-black text-slate-700 lg:flex">
+        <nav className="hidden items-center gap-6 text-[13px] font-bold text-slate-300 xl:flex" aria-label="Primary navigation">
           <div
             className="relative"
             onMouseEnter={() => setServicesOpen(true)}
             onMouseLeave={() => setServicesOpen(false)}
           >
-            <a href="/services" className="flex items-center gap-1 transition hover:text-brand">
-              Services <ChevronDown size={16} />
+            <a href="/services" className="flex items-center gap-1 py-7 transition hover:text-white">
+              Solutions <ChevronDown size={15} />
             </a>
             {servicesOpen ? (
-              <div className="absolute left-1/2 top-full w-[900px] -translate-x-1/2 pt-5">
-                <div className="grid grid-cols-4 gap-4 rounded-[2rem] border border-slate-200 bg-white p-5 shadow-2xl shadow-slate-900/10">
+              <div className="absolute left-1/2 top-full w-[880px] -translate-x-1/2 pt-3">
+                <div className="grid grid-cols-2 gap-2 rounded-[1.75rem] border border-white/10 bg-[#0c192b] p-3 shadow-panel xl:grid-cols-4">
                   {megaMenu.map((group) => {
                     const Icon = group.icon;
                     return (
-                      <div key={group.title} className="rounded-2xl bg-slate-50 p-4">
-                        <div className="mb-3 flex items-center gap-3">
-                          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-950 text-brand">
-                            <Icon size={20} />
-                          </div>
-                          <p className="text-sm font-black text-slate-950">{group.title}</p>
+                      <a key={group.title} href={group.href} className="group rounded-2xl border border-transparent p-4 transition hover:border-blue-400/20 hover:bg-white/[.05]">
+                        <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-blue-500/10 text-electric ring-1 ring-blue-400/15">
+                          <Icon size={19} />
                         </div>
-                        <div className="grid gap-2 text-xs font-bold text-slate-600">
-                          {group.links.map((link) => (
-                            <a key={link} href="/services" className="hover:text-brand">
-                              {link}
-                            </a>
-                          ))}
-                        </div>
-                      </div>
+                        <p className="font-extrabold text-white">{group.title}</p>
+                        <p className="mt-2 text-xs font-medium leading-5 text-slate-400">{group.summary}</p>
+                        <span className="mt-4 inline-flex items-center gap-1 text-[11px] font-extrabold text-electric">Explore <ArrowUpRight size={12} /></span>
+                      </a>
                     );
                   })}
                 </div>
@@ -67,54 +60,46 @@ export function Header() {
             ) : null}
           </div>
 
-          {nav.filter((item) => item.label !== "Services").map((item) => (
-            <a key={item.label} href={item.href} className="transition hover:text-brand">
+          {nav.map((item) => (
+            <a key={item.label} href={item.href} className="transition hover:text-white">
               {item.label}
             </a>
           ))}
         </nav>
 
-        <div className="hidden items-center gap-3 lg:flex">
-          <a
-            href={`tel:${cleanPhone}`}
-            className="rounded-full border border-slate-300 px-5 py-3 text-sm font-black text-slate-900 transition hover:border-slate-950"
-          >
-            Call Now
+        <div className="hidden items-center gap-3 xl:flex">
+          <a href="/remote-support" className="px-2 py-3 text-xs font-extrabold text-slate-300 transition hover:text-white">
+            Get Support
           </a>
-          <a href={requestQuoteHref} className="rounded-full bg-brand px-5 py-3 text-sm font-black text-white shadow-lg shadow-orange-500/20 transition hover:bg-orange-600">
-            Request Quote
+          <a href={requestQuoteHref} className="inline-flex items-center gap-2 rounded-full bg-brand px-5 py-3 text-xs font-extrabold text-white shadow-lg shadow-orange-500/20 transition hover:-translate-y-0.5 hover:bg-orange-600">
+            Request a Quote <ArrowUpRight size={14} />
           </a>
         </div>
 
-        <button onClick={() => setOpen(!open)} className="rounded-xl border border-slate-200 p-2 lg:hidden" aria-label="Toggle navigation menu">
-          {open ? <X size={22} /> : <Menu size={22} />}
+        <button
+          onClick={() => setOpen(!open)}
+          className="rounded-xl border border-white/15 bg-white/[.05] p-2.5 text-white xl:hidden"
+          aria-label="Toggle navigation menu"
+          aria-expanded={open}
+        >
+          {open ? <X size={21} /> : <Menu size={21} />}
         </button>
       </div>
 
       {open ? (
-        <div className="border-t border-slate-200 bg-white px-5 py-5 lg:hidden">
-          <div className="grid gap-4">
-            {[
-              ...nav,
-              { label: "Remote Support", href: "/remote-support" },
-              { label: "Service Pricing", href: "/service-pricing" },
-              { label: "Book a Site Visit", href: "/book-meeting" },
-            ].map((item) => (
-              <a key={item.label} href={item.href} onClick={() => setOpen(false)} className="font-black text-slate-800">
+        <div className="border-t border-white/10 bg-[#091525] px-5 py-5 xl:hidden">
+          <nav className="mx-auto grid max-w-3xl gap-1" aria-label="Mobile navigation">
+            <a href="/services" onClick={() => setOpen(false)} className="rounded-xl px-3 py-3 font-extrabold hover:bg-white/[.05]">All Solutions</a>
+            {[...nav, { label: "Remote Support", href: "/remote-support" }, { label: "Book a Site Visit", href: "/book-meeting" }].map((item) => (
+              <a key={item.label} href={item.href} onClick={() => setOpen(false)} className="rounded-xl px-3 py-3 font-bold text-slate-300 hover:bg-white/[.05] hover:text-white">
                 {item.label}
               </a>
             ))}
-            <div className="rounded-2xl bg-slate-50 p-4 text-sm text-slate-600">
-              <p className="font-black text-slate-900">Serving Area</p>
-              <p className="mt-1">{addressLine1}</p>
+            <div className="mt-3 grid grid-cols-2 gap-3">
+              <a href={`tel:${cleanPhone}`} className="rounded-full border border-white/15 px-4 py-3 text-center text-sm font-extrabold">Call Now</a>
+              <a href={requestQuoteHref} className="rounded-full bg-brand px-4 py-3 text-center text-sm font-extrabold">Request Quote</a>
             </div>
-            <a href={`tel:${cleanPhone}`} className="rounded-full border border-slate-300 px-5 py-3 text-center font-black text-slate-900">
-              Call {phone}
-            </a>
-            <a href={requestQuoteHref} className="rounded-full bg-brand px-5 py-3 text-center font-black text-white">
-              Request Quote
-            </a>
-          </div>
+          </nav>
         </div>
       ) : null}
     </header>

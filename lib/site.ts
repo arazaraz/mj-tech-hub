@@ -14,26 +14,60 @@ import {
   Wrench,
 } from "lucide-react";
 
-export const phone = process.env.NEXT_PUBLIC_PHONE || "+1 (647) 000-0000";
+export const phone = process.env.NEXT_PUBLIC_PHONE || "+1 (343) 989-7468";
 export const email = process.env.NEXT_PUBLIC_EMAIL || "info@mjtechhub.ca";
 export const addressLine1 = process.env.NEXT_PUBLIC_ADDRESS_LINE1 || "Toronto, ON";
 export const addressLine2 = process.env.NEXT_PUBLIC_ADDRESS_LINE2 || "Serving Toronto & GTA • By Appointment";
 export const requestQuoteHref = "/contact#quote-form";
 
 export const nav = [
-  { label: "Services", href: "/services" },
-  { label: "Industries", href: "/#industries" },
   { label: "Projects", href: "/projects" },
-  { label: "Service Areas", href: "/#service-areas" },
-  { label: "Resources", href: "/#faq" },
+  { label: "Residential", href: "/residential" },
+  { label: "Business", href: "/office-setup" },
+  { label: "AI Receptionist", href: "/ai-receptionist" },
   { label: "About", href: "/#about" },
   { label: "Contact", href: "/contact" },
+];
+
+export const footerLinks = [
+  {
+    title: "Solutions",
+    links: [
+      { label: "IT Support", href: "/help-desk" },
+      { label: "Network & Wi-Fi", href: "/services#network" },
+      { label: "Security Systems", href: "/services#security" },
+      { label: "VoIP Systems", href: "/voip" },
+      { label: "AI Receptionist", href: "/ai-receptionist" },
+    ],
+  },
+  {
+    title: "Who We Help",
+    links: [
+      { label: "Homes & Condos", href: "/residential" },
+      { label: "Clinics & Dental", href: "/ai-receptionist" },
+      { label: "Offices & Retail", href: "/office-setup" },
+      { label: "New Build-Outs", href: "/office-setup" },
+      { label: "Project Portfolio", href: "/projects" },
+    ],
+  },
+  {
+    title: "Company",
+    links: [
+      { label: "About MJ Tech Hub", href: "/#about" },
+      { label: "Service Areas", href: "/#service-areas" },
+      { label: "Remote Support", href: "/remote-support" },
+      { label: "Book a Site Visit", href: "/book-meeting" },
+      { label: "Request a Quote", href: "/contact#quote-form" },
+    ],
+  },
 ];
 
 export const megaMenu = [
   {
     title: "Managed IT & Help Desk",
     icon: Headphones,
+    href: "/help-desk",
+    summary: "Responsive support for users, devices, Microsoft 365 and day-to-day IT.",
     links: [
       "Remote IT Support",
       "On-Site IT Support",
@@ -47,6 +81,8 @@ export const megaMenu = [
   {
     title: "Network & Infrastructure",
     icon: Server,
+    href: "/services#network",
+    summary: "Cabling, racks, switching, Wi-Fi and resilient network foundations.",
     links: [
       "Network Cabling",
       "Cable Termination",
@@ -60,6 +96,8 @@ export const megaMenu = [
   {
     title: "Security Systems",
     icon: ShieldCheck,
+    href: "/services#security",
+    summary: "CCTV, alarms and access control designed around your property.",
     links: [
       "CCTV Camera Installation",
       "Intrusion Alarm Systems",
@@ -69,9 +107,11 @@ export const megaMenu = [
     ],
   },
   {
-    title: "VoIP & Smart Technology",
+    title: "Voice & AI Automation",
     icon: Router,
-    links: ["VoIP Phone Systems", "Smart Home Automation", "Residential Technology Setup"],
+    href: "/ai-receptionist",
+    summary: "VoIP, AI receptionist and appointment workflows for modern teams.",
+    links: ["VoIP Phone Systems", "AI Receptionist", "Call & Appointment Automation"],
   },
 ];
 
@@ -95,10 +135,10 @@ export const serviceCategories = [
     desc: "CCTV, intrusion alarm panels, door contacts, motion detectors, access control and remote viewing support.",
   },
   {
-    title: "VoIP & Communications",
-    href: "/services",
+    title: "VoIP & AI Receptionist",
+    href: "/ai-receptionist",
     icon: PhoneCall,
-    desc: "VoIP phones, desk phone setup, call-flow basics and communications troubleshooting for small offices and professional spaces.",
+    desc: "Business phone systems, intelligent call routing, missed-call workflows and AI front-desk automation for appointment-based teams.",
   },
   {
     title: "Residential & Smart Home",
@@ -154,11 +194,14 @@ export const serviceGroups = [
     ],
   },
   {
-    title: "VoIP & Smart Technology",
-    summary: "Connected communication and smart technology for offices and homes.",
+    title: "Voice, AI & Smart Technology",
+    summary: "Connected communication, front-desk automation and smart technology for offices and homes.",
     items: [
       "VoIP Phone Systems",
       "Desk Phone Setup",
+      "AI Receptionist",
+      "Missed-Call Follow-Up",
+      "Appointment Workflows",
       "Smart Home Automation",
       "Smart Doorbells",
       "Smart Locks / Lighting",
@@ -250,24 +293,6 @@ export const vendorPills = [
   "Lenovo",
 ];
 
-export const testimonials = [
-  {
-    quote: "Clean wiring, organized rack work and a professional office technology setup from start to finish.",
-    name: "Office Setup Client",
-    type: "Toronto & GTA",
-  },
-  {
-    quote: "Quick remote support for everyday IT issues, with on-site help available when hands-on service is needed.",
-    name: "Business Support Client",
-    type: "Help Desk Support",
-  },
-  {
-    quote: "Reliable Wi-Fi, camera and network support with practical recommendations and clear testing before handover.",
-    name: "Residential Client",
-    type: "Home Technology",
-  },
-];
-
 export const faq = [
   {
     q: "Do you provide remote and on-site IT support?",
@@ -317,6 +342,7 @@ export const serviceNeededOptions = [
   "Intrusion Alarm",
   "Access Control",
   "VoIP",
+  "AI Receptionist / Phone Agent",
   "Smart Home",
   "Other",
 ];
